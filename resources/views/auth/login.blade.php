@@ -50,7 +50,8 @@
                           <span class="check"></span>
                       </span>
                   </label>
-              </div>          
+              </div>
+                    
             </div>
             <div class="footer text-center">
               <!-- <button type="submit" class="btn btn-primary">
