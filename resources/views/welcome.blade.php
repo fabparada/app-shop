@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="section text-center">
-      <h2 class="title">Productos</h2>
+      <h2 class="title">Productos disponibles</h2>
       <div class="team">
         <div class="row">
           @foreach($products as $product)
@@ -74,8 +74,7 @@
                   <small class="card-description text-muted">Model</small>
                 </h4>
                 <div class="card-body">
-                  <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                  <p class="card-description">{{ $product->description }}</p>
                 </div>
                 <div class="card-footer justify-content-center">
                   <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
