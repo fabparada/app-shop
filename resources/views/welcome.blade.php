@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'diana')
+
 @section('body-class', 'landing-page')
 
 @section('content')
@@ -7,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1 class="title">Hola diana cara de rana.</h1>
+        <h1 class="title">Bienvenido a app-shop.</h1>
         <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
         <br>
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
@@ -67,11 +69,11 @@
             <div class="team-player">
               <div class="card card-plain">
                 <div class="col-md-6 ml-auto mr-auto">
-                  <img src="../assets/img/faces/avatar.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                  <img src="{{ $product->images()->first()->image }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                 </div>
                 <h4 class="card-title">{{ $product->nombre }}
                   <br>
-                  <small class="card-description text-muted">Model</small>
+                  <small class="card-description text-muted">{{ $product->category->name }}</small>
                 </h4>
                 <div class="card-body">
                   <p class="card-description">{{ $product->description }}</p>
