@@ -14,20 +14,20 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="title">Let&apos;s talk product</h2>
-          <h2 class="title">Registrar un nuevo producto</h2>
-          <form action="{{ url('/admin/products') }}" method="post">
+          <h2 class="title">editar un producto seleccionado</h2>
+          <form action="{{ url('/admin/products/'.$product->id.'/edit') }}" method="post">
             {{ csrf_field() }}
             <div class="row">
               <div class="col-sm-6">
               	<div class="form-group label-floating">
               		<label class="control-label">nombre del producto</label>
-              		<input type="text" class="form-control" name="name">
+              		<input type="text" class="form-control" name="name" value="{{ $product->nombre }}">
               	</div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group label-floating">
                   <label class="control-label">precio producto</label>
-                  <input type="number" class="form-control" name="price">
+                  <input type="number" step="0.01" class="form-control" name="price" value="{{ $product->price }}">
                 </div>
               </div>
 
@@ -35,12 +35,13 @@
             <div class="col-sm-6">
               <div class="form-group label-floating">
                 <label class="control-label">Descripción corta</label>
-                <input type="text" class="form-control" name="description">
+                <input type="text" class="form-control" name="description" value="{{ $product->description }}"
               </div>
             </div>
 
-            <textarea class="form-control ml-3" name="long_description" placeholder="descripcióon extensa" rows="5"></textarea>
-            <button class="btn btn-primary">registrar</button>
+            <textarea class="form-control ml-3" name="long_description" placeholder="descripcióon extensa" rows="5">{{ $product->long_description }}</textarea>
+            <button class="btn btn-primary">guardar cambios</button>
+            <a class="btn btn-default" href="{{ url('/admin/products') }}">Cancelar</a>
           </form>
         </div>
       </div>

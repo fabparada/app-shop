@@ -6,15 +6,16 @@
 
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('/img/profile_city.jpg') }}');">
- 
+
 </div>
 <div class="main main-raised">
   <div class="container">
-    
+
     <div class="section text-center">
       <h2 class="title">Listado de productos</h2>
       <div class="team">
         <div class="row">
+          <a href="{{ '/admin/products/create' }}" class="mx-auto mb-3 btn btn-primary btn-round"type="button" name="button">Nuevo producto</a>
           <table class="table">
             <thead>
                 <tr>
@@ -32,21 +33,21 @@
                     <td class="text-center">1</td>
                     <td>{{ $product->nombre}}</td>
                     <td>{{ $product->description }}</td>
-                    <td>{{ $product->category->name }}</td>
+                    <td>{{ $product->category ? $product->category->name : 'General' }}</td>
                     <td class="text-right">&euro; {{ $product->price }}</td>
                     <td class="td-actions text-right">
                         <button type="button" rel="tooltip" title="Ver producto" class="btn btn-info">
                             <i class="material-icons">person</i>
                         </button>
-                        <button type="button" rel="tooltip" title="Editar" class="btn btn-success">
+                        <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar" class="btn btn-success">
                             <i class="material-icons">edit</i>
-                        </button>
+                        </a>
                         <button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger">
                             <i class="material-icons">close</i>
                         </button>
                     </td>
-                </tr>      
-                @endforeach       
+                </tr>
+                @endforeach
             </tbody>
         </table>
         <div class="mx-auto">{{ $products->links() }}</div>
