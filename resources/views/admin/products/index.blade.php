@@ -30,7 +30,7 @@
             <tbody>
                 @foreach ($products as $product)
                 <tr>
-                    <td class="text-center">1</td>
+                    <td class="text-center">{{ $product->id}}</td>
                     <td>{{ $product->nombre}}</td>
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->category ? $product->category->name : 'General' }}</td>
@@ -42,9 +42,12 @@
                         <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar" class="btn btn-success">
                             <i class="material-icons">edit</i>
                         </a>
-                        <button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                        </button>
+                        <form class="" action="{{ url('/admin/products/'.$product->id.'/delete')}}" method="post">
+                          {{ csrf_field() }}
+                          <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger">
+                              <i class="material-icons">close</i>
+                          </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
