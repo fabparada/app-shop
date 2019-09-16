@@ -15,6 +15,15 @@
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="title">Let&apos;s talk product</h2>
           <h2 class="title">Registrar un nuevo producto</h2>
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
           <form action="{{ url('/admin/products') }}" method="post">
             {{ csrf_field() }}
             <div class="row">
