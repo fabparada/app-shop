@@ -30,13 +30,13 @@
               <div class="col-sm-6">
               	<div class="form-group label-floating">
               		<label class="control-label">nombre del producto</label>
-              		<input type="text" class="form-control" name="name">
+              		<input type="text" class="form-control" value="{{ old('nombre') }}" name="nombre">
               	</div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group label-floating">
                   <label class="control-label">precio producto</label>
-                  <input type="number" class="form-control" name="price">
+                  <input type="number" value="{{ old('price') }}" class="form-control" name="price">
                 </div>
               </div>
 
@@ -44,11 +44,11 @@
             <div class="col-sm-6">
               <div class="form-group label-floating">
                 <label class="control-label">Descripción corta</label>
-                <input type="text" class="form-control" name="description">
+                <input type="text" value="{{ old('description') }}" class="form-control" name="description">
               </div>
             </div>
 
-            <textarea class="form-control ml-3" name="long_description" placeholder="descripcióon extensa" rows="5"></textarea>
+            <textarea class="form-control ml-3" name="long_description" placeholder="descripcióon extensa" rows="5">{{ old('long_description') }}</textarea>
             <button class="btn btn-primary">registrar</button>
           </form>
         </div>

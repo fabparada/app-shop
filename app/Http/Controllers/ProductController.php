@@ -32,7 +32,7 @@ class ProductController extends Controller
         // dd($request->all());
         // registrar en la bd
         $product = new Product();
-        $product->nombre = $request->input('name');
+        $product->nombre = $request->input('nombre');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->long_description = $request->input('long_description');
@@ -48,11 +48,20 @@ class ProductController extends Controller
     }
     public function update(Request $request, $id)
     {
-
+        $messages = [
+            'nombre.required' => 'nombre es requerido',
+            'name.required' => 'Descripción es requerida',
+        ];
+        $rules = [
+            'nombre' => 'required|min:3',
+            'description' => 'required|max:200',
+            'price' => 'required|numeric|min:0',
+        ];
+        $this->validate($request, $rules);
         // dd($request->all());
         // registrar en la bd
         $product = Product::find($id);
-        $product->nombre = $request->input('name');
+        $product->nombre = $request->input('nombre');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->long_description = $request->input('long_description');

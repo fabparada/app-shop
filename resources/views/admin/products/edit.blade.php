@@ -15,19 +15,28 @@
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="title">Let&apos;s talk product</h2>
           <h2 class="title">editar un producto seleccionado</h2>
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
           <form action="{{ url('/admin/products/'.$product->id.'/edit') }}" method="post">
             {{ csrf_field() }}
             <div class="row">
               <div class="col-sm-6">
               	<div class="form-group label-floating">
               		<label class="control-label">nombre del producto</label>
-              		<input type="text" class="form-control" name="name" value="{{ $product->nombre }}">
+              		<input type="text" class="form-control" name="nombre" value="{{ old('nombre', $product->nombre) }}">
               	</div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group label-floating">
                   <label class="control-label">precio producto</label>
-                  <input type="number" step="0.01" class="form-control" name="price" value="{{ $product->price }}">
+                  <input type="number" step="0.01" class="form-control" name="price" value="{{ old('price', $product->price) }}">
                 </div>
               </div>
 
@@ -35,11 +44,11 @@
             <div class="col-sm-6">
               <div class="form-group label-floating">
                 <label class="control-label">Descripción corta</label>
-                <input type="text" class="form-control" name="description" value="{{ $product->description }}"
+                <input type="text" class="form-control" name="description" value="{{ old('description', $product->description) }}">
               </div>
             </div>
 
-            <textarea class="form-control ml-3" name="long_description" placeholder="descripcióon extensa" rows="5">{{ $product->long_description }}</textarea>
+            <textarea class="form-control ml-3" name="long_description" placeholder="descripcióon extensa" rows="5">{{ old('long_description', $product->long_description) }}"</textarea>
             <button class="btn btn-primary">guardar cambios</button>
             <a class="btn btn-default" href="{{ url('/admin/products') }}">Cancelar</a>
           </form>
