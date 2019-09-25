@@ -42,6 +42,9 @@
                         <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar" class="btn btn-success">
                             <i class="material-icons">edit</i>
                         </a>
+                        <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar Imagenes del producto" class="btn btn-warning">
+                            <i class="material-icons">satellite</i>
+                        </a>
                         <form class="" action="{{ url('/admin/products/'.$product->id.'/delete')}}" method="post">
                           {{ csrf_field() }}
                           <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger">

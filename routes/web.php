@@ -29,5 +29,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
     Route::get('/products/{id}/edit', 'ProductController@edit'); //formulario edicion
     Route::post('/products/{id}/edit', 'ProductController@update'); //actualizar
     Route::post('/products/{id}/delete', 'ProductController@destroy'); //eliminar
+
+    Route::get('/products/{id}/images', 'ImageController@index'); //listado imgns
+    Route::post('/products/{id}/images', 'ImageControler@store'); //registrar
+    Route::post('/products/{id}/images', 'ImageController@destroy'); //eliminar
+
 });
 
