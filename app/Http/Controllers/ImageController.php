@@ -27,11 +27,11 @@ class ImageController extends Controller
 
         //crear un registro en la bd en la tabla product_images
         $productImage = new ProductImage();
-        $productImage->image = $fileName;
         // $productImage->featured = false;
         $productImage->product_id = $id;
         $productImage->save(); //insert en la bd
-        return back();
+
+      return back();
     }
 
     public function destroy()

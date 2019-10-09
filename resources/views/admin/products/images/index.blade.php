@@ -13,11 +13,11 @@
     <div class="section text-center">
       <h2 class="title">Imagenes del producto "{{ $product->nombre }}"</h2>
       <!-- admin/products/4/images -->
-      <form method="post" action="" enctype="multipart/form-data">
+      <form method="post" action="{{ route('products.save_image', $product->id)}}" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <input type="file" name="photo" value="" required>
+        <input type="file" name="photo" required>
         <button type="submit" class=" mb-3 btn btn-primary btn-round">Subir nueva imagen</button>
-        <a href="{{ '/admin/products' }}" class=" mb-3 btn btn-primary btn-round">volver al listado de productos</a>
+        <a href="{{ url('/admin/products' )}}" class=" mb-3 btn btn-primary btn-round">volver al listado de productos</a>
       </form>
       <hr>
 
@@ -27,7 +27,7 @@
         <div class="col-md-4 mb-5">
           <div class="panel panel-default">
               <div class="panel-body">
-                  <img src="{{ $image->image }}" alt="">
+                  <img src="{{ $image->getUrlAttribute() }}" alt="">
                   <button type="submit" class="btn btn-danger btn-round">Eliminar imagen</button>
               </div>
           </div>
