@@ -27,7 +27,7 @@
         <div class="col-md-4 mb-5">
           <div class="panel panel-default">
               <div class="panel-body">
-                  <img src="{{ $image->getUrlAttribute() }}" alt="">
+                  <img src="{{ $image->UrlPath }}" alt="">
                   <button type="submit" class="btn btn-danger btn-round">Eliminar imagen</button>
               </div>
           </div>

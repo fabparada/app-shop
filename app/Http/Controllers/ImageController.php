@@ -29,7 +29,9 @@ class ImageController extends Controller
         $productImage = new ProductImage();
         // $productImage->featured = false;
         $productImage->product_id = $id;
+        $productImage->image = $fileName;
         $productImage->save(); //insert en la bd
+      
 
       return back();
     }
