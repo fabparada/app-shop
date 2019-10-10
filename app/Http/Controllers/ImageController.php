@@ -8,6 +8,8 @@ use App\Product;
 
 use App\ProductImage;
 
+use File;
+
 class ImageController extends Controller
 {
     public function index($id)
@@ -23,21 +25,37 @@ class ImageController extends Controller
         $file = $request->file('photo');
         $path = public_path() . '/images/products';
         $fileName = uniqid() . $file->getClientOriginalName();
-        $file->move($path, $fileName);
+        $moved = $file->move($path, $fileName);
 
         //crear un registro en la bd en la tabla product_images
-        $productImage = new ProductImage();
-        // $productImage->featured = false;
-        $productImage->product_id = $id;
-        $productImage->image = $fileName;
-        $productImage->save(); //insert en la bd
-      
+        if($moved) {
+          $productImage = new ProductImage();
+          // $productImage->featured = false;
+          $productImage->product_id = $id;
+          $productImage->image = $fileName;
+          $productImage->save(); //insert en la bd}
+        }
 
       return back();
     }
 
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
+      //eliminar archivo
+      $productImage = ProductImage::find($request->input('image_id'));
+      if (substr($productImage->image, 0, 4) === "http"){
+        $deleted = true;
+      } else{
+        $fullPath = public_path() . '/images/products/' . $productImage->image;
+        $deleted = File::delete($fullPath);
+      }
 
+
+
+      //eliminar registro de la bcadd
+      if($deleted){
+        $productImage->delete();
+      }
+      return back();
     }
 }

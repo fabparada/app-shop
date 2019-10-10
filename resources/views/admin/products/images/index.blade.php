@@ -27,8 +27,13 @@
         <div class="col-md-4 mb-5">
           <div class="panel panel-default">
               <div class="panel-body">
-                  <img src="{{ $image->UrlPath }}" alt="">
-                  <button type="submit" class="btn btn-danger btn-round">Eliminar imagen</button>
+                  <img src="{{ $image->UrlPath }}" width="250" alt="">
+                  <form action="" method="post">
+                      {{ csrf_field() }}
+                      <input type="hidden" name="image_id" value="{{ $image->id }}">
+                      <button type="submit" class="btn btn-danger btn-round">Eliminar imagen</button>
+                  </form>
+
               </div>
           </div>
         </div>
