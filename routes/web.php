@@ -33,5 +33,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function (){
     Route::get('/products/{id}/images', 'ImageController@index'); //listado imgns
     Route::post('/products/{id}/save_image', 'ImageController@store')->name('products.save_image'); //registrar
     Route::post('/products/{id}/images', 'ImageController@destroy'); //eliminar
+    Route::GET('/products/{id}/images/select/{image}', 'ImageController@select'); //eliminar
 
 });

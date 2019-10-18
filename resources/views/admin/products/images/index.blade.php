@@ -32,6 +32,17 @@
                       {{ csrf_field() }}
                       <input type="hidden" name="image_id" value="{{ $image->id }}">
                       <button type="submit" class="btn btn-danger btn-round">Eliminar imagen</button>
+                      @if($image->featured)
+                        <button type="button" href=" {{url('/admin/products/'.$product->id.'/images/select/'.$image->id) }}" rel="tooltip"
+                          title="Imagen destacada" class="btn btn-info btn-fab btn-fab-mini btn-round">
+                          <i class="material-icons">favorite</i>
+                        </button>
+                      @else
+                        <a href=" {{url('/admin/products/'.$product->id.'/images/select/'.$image->id) }}" class="btn btn-primary btn-fab btn-fab-mini btn-round">
+                          <i class="material-icons">favorite</i>
+                        </a>
+                      @endif
+
                   </form>
 
               </div>

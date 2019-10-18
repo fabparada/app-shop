@@ -24,9 +24,9 @@ class Product extends Model
       if(!$featuredImage)
         $featuredImage = $this->images()->first();
       if($featuredImage) {
-        return $featuredImage->url;
+        return $featuredImage->UrlPath;
       }
-//default
+      //default
       return '/images/products/default.jpg';
     }
 }

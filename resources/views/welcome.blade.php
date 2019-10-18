@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="section text-center">
+    <div class="section text-center pb-0">
       <h2 class="title">Productos disponibles</h2>
       <div class="team">
         <div class="row">
@@ -69,7 +69,7 @@
             <div class="team-player">
               <div class="card card-plain">
                 <div class="col-md-6 ml-auto mr-auto">
-                  <img src="{{ $product->images()->first()->image }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                  <img src="{{ $product->FeaturedImageUrl }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                 </div>
                 <h4 class="card-title">{{ $product->nombre }}
                   <br>
@@ -88,6 +88,11 @@
           </div>
           @endforeach
         </div>
+        <div class="row">
+          <div class="mx-auto">
+              {{ $products->links() }}
+          </div>
+        </div>
       </div>
     </div>
     <div class="section section-contacts">
@@ -95,6 +100,8 @@
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="text-center title">Work with us</h2>
           <h4 class="text-center description">Divide details about your product or agency work into parts. Write a few lines about each one and contact us about any further collaboration. We will responde get back to you in a couple of hours.</h4>
+
+
           <form class="contact-form">
             <div class="row">
               <div class="col-md-6">
@@ -122,6 +129,7 @@
               </div>
             </div>
           </form>
+
         </div>
       </div>
     </div>
