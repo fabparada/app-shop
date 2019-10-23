@@ -13,19 +13,20 @@ class CreateCartsTable extends Migration
      */
     public function up()
     {
-        if(Schema::create('carts', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned();
+
             $table->date('order_date');
             $table->date('arrived_date');
             $table->string('status');  // active, pending, approved, cancelled, finished
+            
+
+            // user_id (FK)
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->timestamps();
-        })){
-            Schema::table('carts', function (Blueprint $table) {
-                // user_id (FK)
-                $table->foreign('user_id')->references('id')->on('users');
-            });
-        }
+        });
     }
 
     /**
