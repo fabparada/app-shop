@@ -71,18 +71,19 @@
                 <div class="col-md-6 ml-auto mr-auto">
                   <img src="{{ $product->FeaturedImageUrl }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                 </div>
-                <h4 class="card-title">{{ $product->nombre }}
+                <h4 class="card-title">
+                  <a href="{{ url('/products/'.$product->id) }}">{{ $product->nombre }}</a> 
                   <br>
                   <small class="card-description text-muted">{{ $product->category->name }}</small>
                 </h4>
                 <div class="card-body">
                   <p class="card-description">{{ $product->description }}</p>
                 </div>
-                <div class="card-footer justify-content-center">
+                <!--<div class="card-footer justify-content-center">
                   <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
                   <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
                   <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
-                </div>
+                </div>-->
               </div>
             </div>
           </div>
