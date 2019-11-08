@@ -1,0 +1,7 @@
+
+html body.profile-page.login-page.sidebar-collapse.modal-open div.modal-backdrop.fade.show::after{
+    z-index: 0 !important;
+}
+.clas{
+    color: black;
+}

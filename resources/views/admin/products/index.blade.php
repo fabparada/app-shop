@@ -55,7 +55,7 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+          </table>
         <div class="mx-auto">{{ $products->links() }}</div>
         </div>
       </div>
