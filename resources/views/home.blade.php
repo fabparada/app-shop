@@ -14,9 +14,9 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <h2 class="title">Dashboard</h2>
-          @if (session('status'))
+          @if (session('notification'))
             <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+                {{ session('notification') }}
             </div>
           @endif
           <ul class="nav nav-pills nav-pills-icons" role="tablist">
@@ -40,6 +40,8 @@
 
         
                <!-- tablainit-->
+        <hr>
+        <p my-4>Tu carrito de compras tiene {{ auth()->user()->cart->details->count() }} productos</p>
         <table class="table">
             <thead>
                 <tr>
@@ -68,8 +70,10 @@
                         <a href="{{ url('/product/'.$detail->product->id) }}" target="_blank" rel="tooltip" title="Ver producto" class="btn btn-info">
                             <i class="material-icons">person</i>
                         </a>
-                        <form class="" action="{{ url('/admin/products/'.$detail->product->id.'/delete')}}" method="post">
+                        <form class="" action="{{ url('/cart/delete') }}" method="post">
                           {{ csrf_field() }}
+                                   
+                          <input type="hidden" name="cart_detail_id" value="{{ $detail->id }}">
                           <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger">
                               <i class="material-icons">close</i>
                           </button>
@@ -80,6 +84,16 @@
             </tbody>
           </table>   
         <!-- tabla -->
+        <form method="post" action="{{ url('/order') }}">
+        {{ csrf_field() }}
+        
+          <button class="btn btn-primary btn-round">
+            <i class="material-icons">done</i> Realizar pedido
+          </button>
+
+        </form>
+       
+
         </div>
       </div>
       <div class="features">
