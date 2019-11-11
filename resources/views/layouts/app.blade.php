@@ -75,6 +75,7 @@
                       @if (auth()->user()->admin)
               
                           <a class="dropdown-item" href="{{ url('/admin/products') }}">Gestionar productos</a>                      
+                          <a class="dropdown-item" href="{{ url('/admin/categories') }}">Gestionar categorias</a>     
                       @endif                      
                   </div>     
               </li>
