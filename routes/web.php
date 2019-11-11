@@ -45,10 +45,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group
     Route::get('/categories', 'CategoryController@index'); //listado actegorias
     Route::get('/categories/create', 'CategoryController@create'); //formulario crear categorias
     Route::post('/categories', 'CategoryController@store'); //crear  nuevas categorias
-    Route::get('/categories/{id}/edit', 'CategoryController@edit'); //formulario edicion categorias
-    Route::post('/categories/{id}/edit', 'CategoryController@update'); //actualizar categoria 
-    Route::post('/categories/{id}/delete', 'CategoryController@destroy'); //eliminar categoria
+    Route::get('/categories/{category}/edit', 'CategoryController@edit'); //formulario edicion categorias
+    Route::post('/categories/{category}/edit', 'CategoryController@update'); //actualizar categoria 
+    Route::post('/categories/{category}/delete', 'CategoryController@destroy'); //eliminar categoria
 
-    
+    //en vez de id pasado como parametro {id} pasare como parametro category hacia el controlador.
 
 });
