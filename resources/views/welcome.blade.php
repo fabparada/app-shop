@@ -4,6 +4,50 @@
 
 @section('body-class', 'landing-page')
 
+@section('styles')
+  <style>
+    .tt-query {
+     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .tt-hint {
+      color: #999
+    }
+
+    .tt-menu {    /* used to be tt-dropdown-menu in older versions */
+      width: 222px;
+      margin-top: 4px;
+      padding: 4px 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+              border-radius: 4px;
+      -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+              box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    }
+
+    .tt-suggestion {
+      padding: 3px 20px;
+      line-height: 24px;
+    }
+
+    .tt-suggestion.tt-cursor,.tt-suggestion:hover {
+      color: #fff;
+      background-color: #0097cf;
+
+    }
+
+    .tt-suggestion p {
+      margin: 0;
+    }
+  </style>
+@endsection
+
 @section('content')
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('/img/profile_city.jpg') }}');">
   <div class="container">
@@ -61,23 +105,34 @@
       </div>
     </div>
     <div class="section text-center pb-0">
-      <h2 class="title">Productos disponibles</h2>
+      <h2 class="title">Visita nuestras categorias</h2>
+      <div class="mx-auto d-inline-block" >
+        <form class="form-inline" method="get" action="{{ url('/search') }}" >
+          <input id="search" type="text" placeholder="¿Que producto buscas?" class="form-control" name="query">
+          <button class="btn btn-primary btn-fab btn-fab-mini btn-round mt-4" type="submit">
+            <i class="material-icons">search</i>
+          </button>
+        
+        </form>
+      </div>
+      
+
       <div class="team">
         <div class="row">
-          @foreach($products as $product)
+          @foreach($categories as $category)
           <div class="col-md-4">
             <div class="team-player">
               <div class="card card-plain">
                 <div class="col-md-6 ml-auto mr-auto">
-                  <img src="{{ $product->FeaturedImageUrl }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                  <img src="{{ $category->FeaturedImageUrl }}" alt="imagen representatica de la categoria {{ '$category->name' }}" class="img-raised rounded-circle img-fluid">
                 </div>
                 <h4 class="card-title">
-                  <a href="{{ url('/products/'.$product->id) }}">{{ $product->nombre }}</a> 
+                  <a href="{{ url('/categories/'.$category->id) }}">{{ $category->name }}</a> 
                   <br>
-                  <small class="card-description text-muted">{{ $product->category->name }}</small>
+                  <small class="card-description text-muted">{{ $category->name }}</small>
                 </h4>
                 <div class="card-body">
-                  <p class="card-description">{{ $product->description }}</p>
+                  <p class="card-description">{{ $category->description }}</p>
                 </div>
                 <!--<div class="card-footer justify-content-center">
                   <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
@@ -89,12 +144,7 @@
           </div>
           @endforeach
         </div>
-        <div class="row">
-          <div class="mx-auto">
-              {{ $products->links() }}
-          </div>
-        </div>
-      </div>
+       
     </div>
     <div class="section section-contacts">
       <div class="row">
@@ -137,4 +187,31 @@
   </div>
 </div>
 @include('includes.footer')
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('/js/typeahead.bundle.min.js') }}"></script>
+
+    <script> 
+      $(function () {
+
+          var products = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.whitespace,
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          //states is an array of state names defined in "the basics"
+          //local: ['hoola', 'prueba', 'prueba2','abcd']
+          prefetch: '{{ url("/products/json") }}'
+        });
+    
+        // inicializar typeahead sobre nuestro input de busqueda
+        $('#search').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+        }, {
+              name: 'products',
+              source: products
+        });
+      });
+    </script>
 @endsection

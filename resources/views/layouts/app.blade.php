@@ -8,6 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     @yield('title', 'App-shop')
+
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -17,6 +18,7 @@
   <link href="{{ asset('css/material-kit.css?v=2.0.5') }}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('demo/demo.css') }}" rel="stylesheet" />
+  @yield('styles')
 </head>
 <body class="@yield('body-class') login-page sidebar-collapse">
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
@@ -112,6 +114,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('/js/material-kit.js?v=2.0.5') }}" type="text/javascript"></script>
+  @yield('scripts')
 
 
 </html>
